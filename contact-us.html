@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    .navbar {
+        height: 70px;
+        background: #000000;
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #a0a1a1;
+        font-size: 16px;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .heading {
+        background: black;
+        text-align: center;
+    }
+
+    .heading h1 {
+        padding: 60px 0;
+        font-size: 60px;
+        color: white;
+    }
+
+    .heading2 {
+        max-width: 1200px;
+        margin: 100px auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-form {
+        display: flex;
+        max-width: 1290px;
+        align-items: center;
+        margin: 60px auto;
+    }
+
+    .side-card {
+        flex: 1;
+        margin-left: 0;
+    }
+
+
+    .contact-form h2 {
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .contact-form p {
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+    .card {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding-top: 60px;
+    }
+
+
+    .card>div {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+    }
+
+
+    .card img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .col1 {
+        width: 212px;
+    }
+
+
+    .side-card h3 {
+        font-size: 24px;
+    }
+
+    .side-card p {
+        line-height: 24px;
+    }
+
+    .col-3 {
+        width: 163px;
+    }
+
+    .contact-box {
+        max-width: 520px;
+        background: #eef7f6;
+        padding: 40px;
+        border-radius: 10px;
+    }
+
+    .contact-box h3 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+
+    .sub-text {
+        text-align: center;
+        font-size: 14px;
+        color: #6b6b6b;
+        margin-bottom: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    label {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    input,
+    textarea {
+        padding: 12px 14px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+        height: 120px;
+    }
+
+    button {
+        margin-top: 10px;
+        width: fit-content;
+        padding: 12px 28px;
+        background: #2ea293;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .banner {
+        max-width: 1290px;
+        margin: 60px auto;
+    }
+
+    .map img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .companys {
+        display: flex;
+        gap: 230px;
+        justify-content: center;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    .link {
+        padding-left: 50%;
+        color: rgb(48, 150, 137);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="Jaipur">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobdetail.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+    <div class="heading">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="contact-form">
+        <div class="forms">
+            <div class="side-card">
+                <h2>You Will Grow, You Will <br> Succeed. We Promise That</h2>
+                <p style="text-align: justify;padding-top: 40px;">“Find jobs, apply online, and track applications
+                    easily.
+                    Employers can post
+                    and manage <br> job openings
+                    efficiently.”
+                </p>
+                <div class="card">
+                    <div class="col1">
+                        <img src="Assets/img-about us/phone-logo.svg" alt="phone-logo">
+                        <h3>Call for inquiry</h3>
+                        <p>+257 388-6895</p>
+
+                    </div>
+                    <div class="side-card">
+                        <img src="Assets/img-about us/mail.svg" alt="phone-logo">
+                        <h3>Send us email</h3>
+                        <p>kramulous@sbcglobal.net</p>
+                    </div>
+                    <div class="side-card">
+                        <img src="Assets/img-about us/clock.svg" alt="phone-logo">
+                        <h3>Opening hours</h3>
+                        <p>Mon - Fri: 10AM - 10PM </p>
+                    </div>
+                    <div class="side-card">
+                        <img src="Assets/img-about us/map-pin (1).svg" alt="phone-logo">
+                        <h3>Office</h3>
+                        <p>19 North Road Piscataway, NY 08854</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="login-forms" style="margin-left: 58px;">
+            <div class="col2" style="background-color: #EBF5F4;">
+                <div class="contact-box">
+                    <h3>Contact Info</h3>
+                    <p class="sub-text">here is contact info</p>
+
+                    <form>
+                        <div class="row">
+                            <div class="field">
+                                <label>First Name</label>
+                                <input type="text" placeholder="Your name">
+                            </div>
+
+                            <div class="field">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Your last name">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Your e-mail address">
+                        </div>
+
+                        <div class="field">
+                            <label>Message</label>
+                            <textarea placeholder="Your message..."></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="map">
+            <img src="Assets/img-about us/Map (1).jpg" alt="map">
+        </div>
+    </div>
+    <div class="companys">
+        <img src="Assets/img-about us/zoom.png" alt="zoom">
+        <img src="Assets/img-about us/tinder.png" alt="tinder">
+        <img src="Assets/img-about us/brible.png" alt="brible">
+        <img src="Assets/img-about us/asana.png" alt="asana">
+    </div>
+    <div class="footer-contain" style="margin-top: 60px;">
+        <div class="footer">
+            <div class="footer-top">
+
+                <div class="side-card">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        “Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily.”
+                    </p>
+
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="#">Subscribe Now</a></button>
+                </div>
+
+            </div>
+
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

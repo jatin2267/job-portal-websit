@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #000000;
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #a0a1a1;
+        font-size: 16px;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .heading {
+        background: black;
+        text-align: center;
+    }
+
+    .heading h1 {
+        padding: 60px 0;
+        font-size: 60px;
+        color: white;
+    }
+
+    .main-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 72px;
+    }
+
+    .apply-form {
+        background: white;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .apply-form h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #2ea293;
+    }
+
+    .form-group textarea {
+        height: 120px;
+        resize: vertical;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: #2ea293;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+        background: #279688;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    .link {
+        padding-left: 50%;
+        color: rgb(48, 150, 137);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="Jaipur">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobdetail.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="heading">
+        <h1>Apply Now</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="apply-form">
+            <h2>Submit Your Application</h2>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="resume">Resume/CV</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cover-letter">Cover Letter</label>
+                    <textarea id="cover-letter" name="cover-letter" placeholder="Tell us why you're interested in this position..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        "Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily."
+                    </p>
+
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="#">Subscribe Now</a></button>
+                </div>
+
+            </div>
+
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

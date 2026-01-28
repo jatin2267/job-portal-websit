@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Employers - Job Portal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .employers-section {
+        text-align: center;
+        padding: 80px 20px;
+        background: #f9f9f9;
+    }
+
+    .employers-section h1 {
+        font-size: 50px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .employers-section p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 60px;
+    }
+
+    .features-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .feature {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        width: 300px;
+        transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature i {
+        font-size: 50px;
+        color: #2ea293;
+        margin-bottom: 20px;
+    }
+
+    .feature h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .feature p {
+        font-size: 16px;
+        color: #777;
+    }
+
+    .cta-section {
+        background: #2ea293;
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .cta-section h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .cta-section p {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .cta-btn {
+        background: white;
+        color: #2ea293;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .cta-btn:hover {
+        background: #f0f0f0;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobdetail.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="employers-section">
+        <h1>For Employers</h1>
+        <p>Find the best talent for your company with our advanced recruitment tools.</p>
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-plus-circle"></i>
+                <h3>Post Jobs Easily</h3>
+                <p>Create and publish job listings in minutes.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <h3>Manage Applicants</h3>
+                <p>Review and manage applications efficiently.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Analytics</h3>
+                <p>Get insights on your job postings and applicant data.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to Hire Top Talent?</h2>
+        <p>Join thousands of companies that trust our platform to find the best candidates.</p>
+        <a href="register-company.html" class="cta-btn">Register Your Company</a>
+    </div>
+
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        “Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily.”
+                    </p>
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="#">Subscribe Now</a></button>
+                </div>
+            </div>
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

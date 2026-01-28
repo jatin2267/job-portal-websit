@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    .navbar {
+        height: 70px;
+        background: #000000;
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #a0a1a1;
+        font-size: 16px;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .heading {
+        background: black;
+        text-align: center;
+    }
+
+    .heading h1 {
+        padding: 60px 0;
+        font-size: 60px;
+        color: white;
+    }
+
+    .heading2 {
+        max-width: 1200px;
+        margin: 100px auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .col-1 {
+        flex: 1;
+    }
+
+    .col-2 {
+        flex: 1;
+    }
+
+
+    .col-2 p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .col-1 h2 {
+        font-size: 38px;
+
+    }
+
+    .banner {
+        max-width: 1296px;
+        margin: 72px auto;
+    }
+
+    .banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        filter: contrast(0.5);
+    }
+
+    .heading3 {
+        margin-top: 60px;
+    }
+
+    .heading .content {
+        margin-top: 60px;
+    }
+
+    .content h2 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .heading3 p {
+        margin-top: 40px;
+        text-align: center;
+        line-height: 21px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .heading3 content {
+        margin-top: 40px;
+    }
+
+    .content {
+        margin-top: 60px;
+    }
+
+    .cards {
+        display: flex;
+        margin: 72px auto;
+        align-items: center;
+        padding-top: 60px;
+        width: 1290px;
+        gap: 24px;
+    }
+
+    .col1 {
+        flex: 1;
+        text-align: center;
+    }
+
+    .video-banner {
+        max-width: 1296px;
+        height: 500px;
+        margin: 72px auto;
+
+        border-radius: 20px;
+        position: relative;
+    }
+
+    .video-banner video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero {
+        position: relative;
+        max-width: 1296px;
+        max-height: 790px;
+        margin: 80px auto;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+
+    .hero-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(6px) brightness(0.7);
+    }
+
+
+    .hero-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .hero-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: space-around;
+        padding: 24px 40px;
+        height: 161px;
+    }
+
+    .hero-card {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        color: white;
+        align-items: center;
+    }
+
+    .hero-card .num {
+        background: #2ea293;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .hero-card p {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .hero-card a {
+        font-size: 16px;
+        color: #2ea293;
+        text-decoration: none;
+    }
+
+    .container h2 {
+        font-size: 50px;
+        margin-top: 120px;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .faq {
+        max-width: 1296px;
+        margin: 80px auto;
+        font-family: Arial, sans-serif;
+    }
+
+    .faq h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #d7ebe8;
+        padding: 20px 0;
+        height: 120px;
+    }
+
+    .faq-question {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+    }
+
+    .faq-question p {
+        flex: 1;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .num {
+        color: #2ea293;
+        font-weight: bold;
+        font-size: 28px;
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #2ea293;
+        border-radius: 50%;
+        color: #2ea293;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .faq-answer {
+        margin-left: 48px;
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 24px;
+        color: #555;
+        display: none;
+    }
+
+    .faq-item.active {
+        background: #eef8f6;
+        border-radius: 12px;
+        padding: 24px;
+        height: 162px;
+    }
+
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+
+    .faq-item.active .icon {
+        background: #2ea293;
+        color: white;
+    }
+
+    .section {
+        max-width: 1200px;
+        margin: 80px auto;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+        width: 500px;
+    }
+
+    .img-grid .big {
+        grid-row: span 2;
+        height: 463px;
+    }
+
+
+    .img {
+        background: #ccc;
+        border-radius: 20px;
+        height: 220px;
+    }
+
+
+    .content h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+
+    .content p {
+        color: #555;
+        line-height: 26px;
+        margin-bottom: 30px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-top: 32px;
+    }
+
+    .feature p {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+        width: 500px;
+    }
+
+    .img {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .img.big {
+        grid-row: span 2;
+    }
+
+    .img.small {
+        height: 220px;
+    }
+
+    .img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: contrast(0.5);
+    }
+
+    .blog-section {
+        max-width: 1200px;
+        margin: 80px auto;
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .blog-heading {
+        width: 100%;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    .blog-heading p {
+        padding-top: 40px;
+        font-size: 16px;
+    }
+
+    .blog-card {
+        flex: 1;
+
+        background: #f4f4f4;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .news-section {
+        max-width: 1200px;
+        margin: 100px auto;
+    }
+
+    .news-heading {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .news-heading h2 {
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+
+    .news-heading p {
+        font-size: 16px;
+        color: #666;
+    }
+
+
+    .news-cards {
+        display: flex;
+        gap: 32px;
+    }
+
+    .news-card {
+        flex: 1;
+    }
+
+
+    .news-img {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        height: 280px;
+    }
+
+    .news-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .tag {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: #2ea293;
+        color: white;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        z-index: 1;
+    }
+
+    .date {
+        display: block;
+        margin: 20px 0 12px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .news-card h3 {
+        font-size: 22px;
+        line-height: 30px;
+        margin-bottom: 16px;
+    }
+
+    .news-card a {
+        color: #2ea293;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    .link {
+        padding-left: 50%;
+        color: rgb(48, 150, 137);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="Jaipur">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobdetail.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="heading">
+        <h1>About Us</h1>
+    </div>
+    <div class="heading2">
+        <div class="col-1">
+            <h2>“Search and apply for jobs <br> quickly and track your <br> applications seamlessly.”</h2>
+        </div>
+        <div class="col-2">
+            <p>
+                Our job portal connects candidates with top companies across India.
+                Users can search and filter jobs by industry, role, location, and salary,
+                apply online, and track their applications easily.
+                Employers can post vacancies, manage applications efficiently,
+                and find the right talent for their organization.
+                The platform ensures a smooth and user-friendly experience
+                for both job seekers and recruiters.
+            </p>
+        </div>
+
+    </div>
+    <div class="banner">
+        <img src="Assets/img-about us/main-banner.avif" alt="about banner" width="100%">
+
+    </div>
+    <div class="heading3">
+        <div class="content" style="padding-top: 60px;">
+            <h2>How it works</h2>
+            <p>“Find jobs that match your skills and interests. Apply online and stay updated with the <br> latest
+                openings
+                across different industries in India.” id scelerisque rhoncus
+            </p>
+        </div>
+    </div>
+    <div class="cards">
+        <div class="col1">
+            <img src="Assets/img-about us/svg1.svg" alt="svg">
+            <h5 style="padding-top: 24px;font-size: 20px;">Create Account</h5>
+            <p style="padding-top: 20px;line-height: 24px;font-size: 16px;">Nunc sed a nisl purus. Nibh dis <br>
+                faucibus proin lacus </p>
+        </div>
+        <div class="col1">
+            <img src="Assets/img-about us/svg2.svg" alt="svg">
+            <h5 style="padding-top: 24px;font-size: 20px;">Upload Resume</h5>
+            <p style="padding-top: 20px;line-height: 24px;font-size: 16px;">“Find jobs, apply online, and <br> manage
+                applications seamlessly.” </p>
+        </div>
+        <div class="col1">
+            <img src="Assets/img-about us/svg3.svg" alt="svg">
+            <h5 style="padding-top: 24px;font-size: 20px;">Find Jobs</h5>
+            <p style="padding-top: 20px;line-height: 24px;font-size: 16px;">“Find jobs, apply online, and <br> manage
+                applications seamlessly.”</p>
+        </div>
+        <div class="col1">
+            <img src="Assets/img-about us/svg4.svg" alt="svg">
+            <h5 style="padding-top: 24px;font-size: 20px;">Apply Job</h5>
+            <p style="padding-top: 20px;line-height: 24px;font-size: 16px;">“Find jobs, apply online, and <br> manage
+                applications seamlessly.” </p>
+        </div>
+    </div>
+    <div class="hero" style="padding-top: 120px;">
+        <img src="Assets/img-about us/job-banner.jpg" alt="background" class="hero-bg">
+
+        <div class="hero-content">
+            <div class="button">
+                <img src="Assets/img-about us/Button.svg" alt="button">
+                <h1>
+                    Good Life Begins With <br>
+                    A Good Company
+                </h1>
+            </div>
+        </div>
+
+        <div class="hero-bottom">
+            <div class="hero-card">
+                <span class="num">1</span>
+                <div>
+                    <p>more about job listing <br> app</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <span class="num">2</span>
+                <div>
+                    <p>more about job listing <br> app</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <span class="num">3</span>
+                <div>
+                    <p>more about job listing <br> app</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="question">
+            <h2>Frequently Asked Questions</h2>
+            <p style="font-size: 16px;padding-top: 40px;">“Search jobs by role, location, and salary, and apply online
+                easily.”</p>
+        </div>
+    </div>
+    <div class="faq">
+        <div class="faq-item active">
+            <div class="faq-question">
+                <span class="num">01</span>
+                <p>Can I upload a CV?</p>
+                <span class="icon">×</span>
+            </div>
+            <div class="faq-answer">
+                Our job portal connects candidates with top companies across India.
+                Users can search jobs, apply online, and manage applications seamlessly.
+                Employers can post vacancies, review applications, and hire the right talent.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="num">02</span>
+                <p>How long will the recruitment process take?</p>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                The recruitment process duration depends on the employer and role.
+                Usually it takes between 1–4 weeks.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="num">03</span>
+                <p>What does the recruitment and selection process involve?</p>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                It includes application review, interviews, assessments,
+                and final selection by the employer.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="num">04</span>
+                <p>Do you recruit for Graduates, Apprentices and Students?</p>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes, we provide opportunities for graduates, apprentices,
+                and students across multiple industries.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="num">05</span>
+                <p>Can I receive notifications for future jobs?</p>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes, you can enable job alerts and receive notifications
+                based on your preferences.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="img-grid">
+            <div class="img big">
+                <img src="Assets/img-about us/quality.jpg" alt="quality">
+            </div>
+            <div class="img small">
+                <img src="Assets/img-about us/resumes-desk_926199-4014031.jpg" alt="resume">
+            </div>
+            <div class="img small">
+                <img src="Assets/img-about us/topcompanies.jpg" alt="topcompanies">
+            </div>
+        </div>
+
+
+        <div class="content">
+            <h1>We’re Only Working <br> With The Best</h1>
+            <p>
+                Search and apply for jobs easily. Employers can post openings
+                and manage applications efficiently.
+            </p>
+            <div class="features-grid">
+
+                <div class="feature">
+                    <img src="Assets/img-about us/item.svg" alt="">
+                    <p>Quality Job</p>
+                </div>
+
+                <div class="feature">
+                    <img src="Assets/img-about us/item2.svg" alt="">
+                    <p>Resume Builder</p>
+                </div>
+
+                <div class="feature">
+                    <img src="Assets/img-about us/item3.svg" alt="">
+                    <p>Top Companies</p>
+                </div>
+
+                <div class="feature">
+                    <img src="Assets/img-about us/item4.svg" alt="">
+                    <p>Top Talents</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="news-section">
+
+
+        <div class="news-heading">
+            <h2>News and Blog</h2>
+            <p>
+                Find the right job, apply online, and track your applications seamlessly. Employer
+            </p>
+        </div>
+
+
+        <div class="news-cards">
+
+            <div class="news-card">
+                <div class="news-img">
+                    <span class="tag">News</span>
+                    <img src="Assets/img-about us/media.avif" alt="media">
+                </div>
+
+                <span class="date">30 March 2026</span>
+                <h3>
+                    Revitalizing Workplace Morale: Innovative Tactics For Boosting
+                    Employee Engagement In 2026
+                </h3>
+                <a href="#">Read more →</a>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img">
+                    <span class="tag">Blog</span>
+                    <img src="Assets/img-about us/blog.avif" alt="blog">
+                </div>
+
+                <span class="date">30 March 2026</span>
+                <h3>
+                    How To Avoid The Top Six Most Common Job Interview Mistakes
+                </h3>
+                <a href="#">Read more →</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        “Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily.”
+                    </p>
+
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="#">Subscribe Now</a></button>
+                </div>
+
+            </div>
+
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

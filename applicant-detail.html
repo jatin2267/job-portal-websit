@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Details - Placement</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 40px;
+    }
+
+    .header h1 {
+        font-size: 42px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .header p {
+        font-size: 20px;
+        color: #7f8c8d;
+    }
+
+    .applicant-profile {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin-bottom: 30px;
+        border: 1px solid #e1e8ed;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2ea293, #27ae60);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-info h2 {
+        font-size: 32px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .profile-info p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .profile-status {
+        background: linear-gradient(135deg, #eaf7f5, #d4edda);
+        color: #2ea293;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        display: inline-block;
+        border: 1px solid #c3e6cb;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .detail-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid #dee2e6;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .detail-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-section h3 {
+        font-size: 22px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .detail-section h3 i {
+        color: #2ea293;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .detail-value {
+        color: #666;
+    }
+
+    .skills-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px solid #dee2e6;
+        margin-top: 30px;
+    }
+
+    .skills-section h3 {
+        font-size: 22px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .skills-section h3 i {
+        color: #2ea293;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .skill-item {
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px 15px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .actions-section {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        border: 1px solid #e1e8ed;
+        margin-top: 30px;
+    }
+
+    .actions-section h3 {
+        font-size: 24px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #2ea293, #27ae60);
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-approve {
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+    }
+
+    .btn-approve:hover {
+        background: linear-gradient(135deg, #229954, #27ae60);
+    }
+
+    .btn-reject {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+    }
+
+    .btn-reject:hover {
+        background: linear-gradient(135deg, #c0392b, #a93226);
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+    }
+
+    .btn-secondary:hover {
+        background: linear-gradient(135deg, #5a6268, #495057);
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0 20px;
+            flex-direction: column;
+            height: auto;
+            padding-bottom: 20px;
+        }
+
+        .nav-links {
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        .profile-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .actions-section .btn {
+            display: block;
+            margin: 10px 0;
+        }
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Applicant Details</h1>
+            <p>Review detailed information about the applicant.</p>
+        </div>
+
+        <div class="applicant-profile">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h2>John Doe</h2>
+                    <p>Applied for Software Engineer</p>
+                    <p>Application Date: October 10, 2023</p>
+                    <span class="profile-status">Under Review</span>
+                </div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Full Name:</span>
+                        <span class="detail-value">John Doe</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value">john.doe@email.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value">+1 234 567 890</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Address:</span>
+                        <span class="detail-value">123 Main St, City, State 12345</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date of Birth:</span>
+                        <span class="detail-value">January 15, 1995</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Degree:</span>
+                        <span class="detail-value">Bca</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">University:</span>
+                        <span class="detail-value">XYZ University</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Graduation Year:</span>
+                        <span class="detail-value">2017</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">GPA:</span>
+                        <span class="detail-value">3.8/4.0</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Years of Experience:</span>
+                        <span class="detail-value">5 years</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Previous Position:</span>
+                        <span class="detail-value">Junior Software Developer</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Previous Company:</span>
+                        <span class="detail-value">Tech Solutions Inc.</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Skills:</span>
+                        <span class="detail-value">JavaScript, Python, React, Node.js</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3><i class="fas fa-file-alt"></i> Application Details</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Job Applied For:</span>
+                        <span class="detail-value">Software Engineer</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Application Date:</span>
+                        <span class="detail-value">October 10, 2023</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Resume:</span>
+                        <span class="detail-value"><a href="#" style="color: #2ea293;">Download Resume</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Cover Letter:</span>
+                        <span class="detail-value"><a href="#" style="color: #2ea293;">View Cover Letter</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3><i class="fas fa-tools"></i> Skills & Technologies</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">HTML/CSS</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">MongoDB</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <h3>Take Action</h3>
+            <button class="btn btn-approve" onclick="approveApplicant()">Approve Application</button>
+            <button class="btn btn-reject" onclick="rejectApplicant()">Reject Application</button>
+            <a href="placement-view-applicants.html" class="btn btn-secondary">Back to Applicants</a>
+        </div>
+    </div>
+
+    <script>
+        function approveApplicant() {
+            if (confirm('Are you sure you want to approve this applicant?')) {
+                // Here you would typically send a request to the server to approve the applicant
+                alert('Applicant approved successfully!');
+                // Update the status or redirect
+                window.location.href = 'placement-view-applicants.html';
+            }
+        }
+
+        function rejectApplicant() {
+            if (confirm('Are you sure you want to reject this applicant?')) {
+                // Here you would typically send a request to the server to reject the applicant
+                alert('Applicant rejected successfully!');
+                // Update the status or redirect
+                window.location.href = 'placement-view-applicants.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

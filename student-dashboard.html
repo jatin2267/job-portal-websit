@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+
+    .welcome-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 40px;
+    }
+
+    .welcome-header h1 {
+        font-size: 42px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .welcome-header p {
+        font-size: 20px;
+        color: #7f8c8d;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .dashboard-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e1e8ed;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-card h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+        color: #2c3e50;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dashboard-card h2 i {
+        color: #2ea293;
+    }
+
+    .profile-overview {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .profile-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #2ea293;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+    }
+
+    .profile-info h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .profile-info p {
+        color: #666;
+    }
+
+    .job-list {
+        list-style: none;
+    }
+
+    .job-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .job-item:last-child {
+        border-bottom: none;
+    }
+
+    .job-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .job-company {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .job-status {
+        background: #eaf7f5;
+        color: #2ea293;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+    }
+
+    .notification-list {
+        list-style: none;
+    }
+
+    .notification-item {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+    .notification-text {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .notification-time {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .btn {
+        background: #2ea293;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #279688;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0 20px;
+            flex-direction: column;
+            height: auto;
+            padding-bottom: 20px;
+        }
+
+        .nav-links {
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dashboard-container {
+            padding: 10px;
+        }
+
+        .welcome-header h1 {
+            font-size: 28px;
+        }
+
+        .welcome-header p {
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            flex-direction: column;
+        }
+
+        .dashboard-card {
+            min-width: auto;
+        }
+
+        .profile-overview {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .job-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="welcome-header">
+            <h1>Welcome to Your Student Dashboard</h1>
+            <p>Manage your job applications, profile, and more.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h2><i class="fas fa-user-circle"></i> Profile Overview</h2>
+                <div class="profile-overview">
+                    <div class="profile-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3>John Doe</h3>
+                        <p>Computer Science Student at XYZ University</p>
+                        <p>Email: john.doe@example.com</p>
+                        <p>Skills: JavaScript, Python, React</p>
+                        <p>Profile Completion: 85%</p>
+                    </div>
+                </div>
+                <br>
+                <a href="#" class="btn">Edit Profile</a>
+                <a href="#" class="btn" style="margin-left: 10px;">Build Resume</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-briefcase"></i> Applied Jobs</h2>
+                <ul class="job-list">
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Software Engineer</div>
+                            <div class="job-company">Tech Corp</div>
+                        </div>
+                        <span class="job-status">Applied</span>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Data Analyst</div>
+                            <div class="job-company">Data Inc</div>
+                        </div>
+                        <span class="job-status">Interview Scheduled</span>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Marketing Intern</div>
+                            <div class="job-company">Brand Co</div>
+                        </div>
+                        <span class="job-status">Applied</span>
+                    </li>
+                </ul>
+                <br>
+                <a href="jobs.html" class="btn">View All Jobs</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-bookmark"></i> Saved Jobs</h2>
+                <ul class="job-list">
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">UX Designer</div>
+                            <div class="job-company">Design Studio</div>
+                        </div>
+                        <span class="job-status">Saved</span>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Project Manager</div>
+                            <div class="job-company">Build Ltd</div>
+                        </div>
+                        <span class="job-status">Saved</span>
+                    </li>
+                </ul>
+                <br>
+                <a href="jobs.html" class="btn">View All Saved</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <ul class="notification-list">
+                    <li class="notification-item">
+                        <div class="notification-text">Your application for Software Engineer has been viewed.</div>
+                        <div class="notification-time">2 hours ago</div>
+                    </li>
+                    <li class="notification-item">
+                        <div class="notification-text">New job matching your profile: Data Analyst at Data Inc.</div>
+                        <div class="notification-time">1 day ago</div>
+                    </li>
+                    <li class="notification-item">
+                        <div class="notification-text">Interview reminder: Data Analyst interview tomorrow at 10 AM.</div>
+                        <div class="notification-time">3 days ago</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-chart-line"></i> Application Analytics</h2>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; color: #2ea293; margin-bottom: 10px;">12</div>
+                    <p>Total Applications</p>
+                    <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                        <div>
+                            <div style="font-size: 24px; color: #27ae60;">5</div>
+                            <p>Interviews</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; color: #e74c3c;">2</div>
+                            <p>Rejections</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; color: #f39c12;">5</div>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-lightbulb"></i> Recommended Jobs</h2>
+                <ul class="job-list">
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Frontend Developer</div>
+                            <div class="job-company">Web Solutions</div>
+                        </div>
+                        <a href="apply-now.html" class="btn" style="font-size: 12px; padding: 5px 10px;">Apply Now</a>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">AI Intern</div>
+                            <div class="job-company">AI Labs</div>
+                        </div>
+                        <a href="apply-now.html" class="btn" style="font-size: 12px; padding: 5px 10px;">Apply Now</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-graduation-cap"></i> Skill Assessment</h2>
+                <p>Take skill tests to improve your profile:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;">
+                        <span>Python Programming</span>
+                        <div style="background: #eee; height: 10px; border-radius: 5px; margin: 5px 0;">
+                            <div style="background: #2ea293; width: 70%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <a href="#" class="btn" style="font-size: 12px; padding: 5px 10px;">Retake Test</a>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <span>JavaScript Fundamentals</span>
+                        <div style="background: #eee; height: 10px; border-radius: 5px; margin: 5px 0;">
+                            <div style="background: #2ea293; width: 85%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <a href="#" class="btn" style="font-size: 12px; padding: 5px 10px;">Retake Test</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+                <ul class="notification-list">
+                    <li class="notification-item">
+                        <div class="notification-text">Career Fair at XYZ University - Oct 15, 2023</div>
+                        <div class="notification-time">In 3 days</div>
+                    </li>
+                    <li class="notification-item">
+                        <div class="notification-text">Webinar: Resume Building Tips - Oct 20, 2023</div>
+                        <div class="notification-time">In 8 days</div>
+                    </li>
+                </ul>
+                <br>
+                <a href="#" class="btn">View Calendar</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

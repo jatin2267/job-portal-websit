@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    .navbar {
+        height: 70px;
+        background: #000000;
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #a0a1a1;
+        font-size: 16px;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .heading {
+        background: black;
+        text-align: center;
+    }
+
+    .heading h1 {
+        padding: 60px 0;
+        font-size: 60px;
+        color: white;
+    }
+
+
+    .main-container {
+        max-width: 1440px;
+        margin: 40px auto;
+        padding: 0 72px;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .job-details-section {
+        flex: 2;
+    }
+
+    .job-card {
+        background: white;
+        border-radius: 18px;
+        padding: 22px 26px;
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .time {
+        font-size: 13px;
+        color: #2ea293;
+        background: #eaf7f5;
+        padding: 4px 12px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .job-fav-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 18px;
+        cursor: pointer;
+    }
+
+    .job-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-top: 24px;
+    }
+
+    .job-title img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+    }
+
+    .job-title h3 {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .company {
+        font-size: 16px;
+        color: #777;
+    }
+
+    .job-info {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-top: 18px;
+        font-size: 14px;
+        color: #555;
+        flex-wrap: wrap;
+    }
+
+    .job-info span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 16px;
+    }
+
+    .job-info i {
+        color: #2ea293;
+    }
+
+    .job-detail-btn {
+        background: #2ea293;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 36px;
+    }
+
+    .job-detail-btn:hover {
+        background: #279688;
+    }
+
+    .job-description {
+        margin-top: 30px;
+    }
+
+    .job-description h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: bold;
+    }
+
+    .job-description p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .job-description ul {
+        list-style: none;
+    }
+
+    .job-description ul li {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .key-responsible {
+        margin-top: 40px;
+    }
+
+    .key-responsible h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: bold;
+    }
+
+    .key-list {
+        line-height: 29px;
+        font-size: 16px;
+    }
+
+
+    .sidebar {
+        flex: 1;
+        min-width: 300px;
+        margin-top: 100px;
+
+    }
+
+
+    .sidebar-card {
+        background: #ebf5f4;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+    }
+
+    .sidebar-card h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .overview-item {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 28px;
+    }
+
+    .overview-item .icon {
+        color: #2ea293;
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+        margin-top: 2px;
+    }
+
+    .overview-content {
+        flex: 1;
+    }
+
+    .label {
+        font-size: 14px;
+        color: #333;
+        font-weight: 600;
+        display: block;
+    }
+
+    .value {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+
+    .map-box {
+        width: 100%;
+        height: 220px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .map-box iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+
+    .sidebar input,
+    .sidebar textarea {
+        width: 100%;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+    }
+
+    .sidebar textarea {
+        height: 100px;
+        resize: none;
+    }
+
+    .sidebar button {
+        width: 100%;
+        padding: 10px;
+        background: #309689;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+        background: #279688;
+    }
+
+    .tags {
+        margin-top: 60px;
+    }
+
+    .tags .a {
+        font-size: 16px;
+        color: white;
+
+    }
+
+    .tags a {
+        display: inline-block;
+        padding: 8px 14px;
+        background: rgb(82, 196, 182);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 14px;
+        margin: 8px 6px 0 0;
+        transition: 0.3s ease;
+    }
+
+    .tags a:hover {
+        background: #279688;
+        transform: translateY(-5px);
+        box-shadow: 0px 10px 10px 10px #000000;
+        
+    }
+
+    .jobs {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 60px;
+    }
+
+    .jobs h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .jobs a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #f1f1f1;
+        color: #333;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .jobs a:hover {
+        background: #2ea293;
+        color: #fff;
+    }
+
+    .related-job {
+        margin-top: 60px;
+    }
+
+    .job-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+    }
+
+    .job-info-left {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        flex-wrap: wrap;
+    }
+
+    .job-detail-btn {
+        background: #2ea293;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
+
+    .job-detail-btn:hover {
+        background: #279688;
+    }
+
+    .related-job h2 {
+        font-size: 50px;
+
+    }
+
+    .related-job .job-card {
+        margin-bottom: 20px;
+        padding: 16px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+    }
+
+    .related-job .job-title h3 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .related-job .job-info span {
+        font-size: 14px;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    .link {
+        padding-left: 50%;
+        color: rgb(48, 150, 137);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="Jaipur">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobdetail.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="heading">
+        <h1>Job Details</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="job-details-section">
+            <div class="job-card">
+                <div class="job-left">
+                    <span class="time">10 min ago</span>
+                    <img class="job-fav-icon" src="assets/images/Icon.svg" alt="Favorite">
+
+                    <div class="job-title">
+                        <img src="assets/images/Logo.png" alt="Company Logo">
+                        <div>
+                            <h3>Broadcast Journalist</h3>
+                            <p class="company">Leffler and Sons</p>
+                        </div>
+                    </div>
+
+                    <div class="job-info">
+                        <span><i class="fa-solid fa-film"></i> Commerce</span>
+                        <span><i class="fa-solid fa-clock"></i> Full time</span>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i> 20,000 – 40,000</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Udaipur, Rajasthan</span>
+                        <a href="#" class="job-detail-btn">Job Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-description">
+                <h2>Job Description</h2>
+                <p>
+                    "Our job portal helps candidates easily find employment opportunities across India in industries
+                    like IT,
+                    media, hotel, construction, and commerce. Users can filter jobs by role, location, and salary, apply
+                    online,
+                    and track the status of their applications. Employers can post jobs, manage applicants, and
+                    streamline
+                    recruitment efficiently. The platform is designed to provide a smooth, user-friendly experience for
+                    both job
+                    seekers and recruiters, ensuring that the right talent connects with the right opportunities
+                    seamlessly."
+                </p>
+
+                <div class="key-responsible">
+                    <h2>Key Responsibilities</h2>
+                    <ul class="key-list">
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Research,
+                            write, and
+                            produce news stories for broadcast media.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Conduct
+                            interviews and
+                            gather information from reliable sources.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Edit video and
+                            audio
+                            content to meet broadcast standards.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Stay updated
+                            on
+                            current events and industry trends.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Collaborate
+                            with
+                            producers, editors, and other journalists to create compelling content.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Meet tight
+                            deadlines
+                            while maintaining accuracy and professionalism.</li>
+                    </ul>
+                </div>
+
+                <div class="key-responsible">
+                    <h2>Professional Skills</h2>
+                    <ul class="key-list">
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Strong
+                            communication
+                            and presentation skills to engage audiences effectively.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Ability to
+                            research,
+                            write, and produce content for broadcast media.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Proficiency in
+                            video
+                            editing software and newsroom tools.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Strong
+                            understanding
+                            of industry trends and current events.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Team
+                            collaboration
+                            skills to work effectively with producers, editors, and reporters.</li>
+                        <li><i class="fa-solid fa-check" style="color: #2ea293; margin-right: 10px;"></i> Time
+                            management and
+                            multitasking skills to meet tight deadlines.</li>
+                    </ul>
+                </div>
+                <div class="tags">
+                    <h2>Tags:</h2>
+                    <a href="#">Full time</a>
+                    <a href="#">Commerce</a>
+                    <a href="#">New - York</a>
+                    <a href="#">Corporate</a>
+                    <a href="#">Location</a>
+                </div>
+                <div class="jobs">
+                    <h2>Share Job:</h2>
+
+                    <a href=" target=" _blank>
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+                    <a href="" target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                    <a href="" target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </div>
+
+                <div class="related-job">
+                    <h2>Related Jobs</h2>
+                    <p style="padding-top: 40px; font-size: 16px;">“Search jobs by role, location, and salary, and apply
+                        online easily.”</p>
+
+                    <div class="job-card">
+                        <span class="time">24 min ago</span>
+                        <img class="job-fav-icon" src="assets/images/Icon.svg" alt="Favorite">
+
+                        <div class="job-title">
+                            <img src="assets/images/Logo (2).png">
+                            <div>
+                                <h3>Accountant</h3>
+                                <p class="company">FinCorp Solutions</p>
+                            </div>
+                        </div>
+
+                        <div class="job-info">
+                            <div class="job-info-left">
+                                <span><i class="fa-solid fa-film"></i> Media</span>
+                                <span><i class="fa-solid fa-clock"></i> Part time</span>
+                                <span><i class="fa-solid fa-indian-rupee-sign"></i> 20,000 – 40,000</span>
+                                <span><i class="fa-solid fa-location-dot"></i> Delhi, NCR</span>
+                            </div>
+
+                            <a href="#" class="job-detail-btn">Job Details</a>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <span class="time">1 hour ago</span>
+                        <img class="job-fav-icon" src="assets/images/Icon.svg" alt="Favorite">
+
+                        <div class="job-title">
+                            <img src="assets/images/Logo.png">
+                            <div>
+                                <h3>UI/UX Designer</h3>
+                                <p class="company">Creative Studio</p>
+                            </div>
+                        </div>
+
+                        <div class="job-info">
+                            <div class="job-info-left">
+                                <span><i class="fa-solid fa-film"></i> IT</span>
+                                <span><i class="fa-solid fa-clock"></i> Full time</span>
+                                <span><i class="fa-solid fa-indian-rupee-sign"></i> 35,000 – 60,000</span>
+                                <span><i class="fa-solid fa-location-dot"></i> Jaipur</span>
+                            </div>
+                            <a href="#" class="job-detail-btn">Job Details</a>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <span class="time">3 hours ago</span>
+                        <img class="job-fav-icon" src="assets/images/Icon.svg" alt="Favorite">
+
+                        <div class="job-title">
+                            <img src="assets/images/Logo.png">
+                            <div>
+                                <h3>Digital Marketer</h3>
+                                <p class="company">Growth Media</p>
+                            </div>
+                        </div>
+
+                        <div class="job-info">
+                            <div class="job-info-left">
+                                <span><i class="fa-solid fa-film"></i> Marketing</span>
+                                <span><i class="fa-solid fa-clock"></i> Full time</span>
+                                <span><i class="fa-solid fa-indian-rupee-sign"></i> 25,000 – 45,000</span>
+                                <span><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+                            </div>
+                            <a href="#" class="job-detail-btn">Job Details</a>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <span class="time">3 hours ago</span>
+                        <img class="job-fav-icon" src="assets/images/Icon.svg" alt="Favorite">
+
+                        <div class="job-title">
+                            <img src="assets/images/Logo.png">
+                            <div>
+                                <h3>HR Executive</h3>
+                                <p class="company">People Corp</p>
+                            </div>
+                        </div>
+
+                        <div class="job-info">
+                            <div class="job-info-left">
+                                <span><i class="fa-solid fa-film"></i> HR</span>
+                                <span><i class="fa-solid fa-clock"></i> Full time</span>
+                                <span><i class="fa-solid fa-indian-rupee-sign"></i> 18,000 – 30,000</span>
+                                <span><i class="fa-solid fa-location-dot"></i> Ahmedabad</span>
+                            </div>
+                            <a href="#" class="job-detail-btn">Job Details</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="sidebar" style="margin-top: 274px;">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Job Overview</h3>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Job Title</span>
+                        <span class="value">Corporate Solutions <br>
+                            Executive</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Job Type</span>
+                        <span class="value">Full Time</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Category</span>
+                        <span class="value">Commerce</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Experience</span>
+                        <span class="value">5 Years</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Degree</span>
+                        <span class="value">Master</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Salary</span>
+                        <span class="value">₹20,000 – ₹40,000</span>
+                    </div>
+                </div>
+
+                <div class="overview-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="overview-content">
+                        <span class="label">Location</span>
+                        <span class="value">Udaipur, Rajasthan</span>
+                    </div>
+                </div>
+
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6843.421710338425!2d75.84887214621227!3d30.950639099106354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a8489d0470673%3A0xa1a5e8bf1679b23d!2sGuru%20Preet%20Nagar%2C%20Ludhiana%2C%20Punjab%20141008!5e0!3m2!1sen!2sin!4v1769074722852!5m2!1sen!2sin"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">Send Us Message</h3>
+
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Phone Number">
+                <textarea placeholder="Your Message"></textarea>
+
+                <button><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        “Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily.”
+                    </p>
+
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="contact-us.html">Subscribe Now</a></button>
+                </div>
+
+            </div>
+
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

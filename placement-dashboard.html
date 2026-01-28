@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+
+    .welcome-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 40px;
+    }
+
+    .welcome-header h1 {
+        font-size: 42px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .welcome-header p {
+        font-size: 20px;
+        color: #7f8c8d;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .dashboard-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e1e8ed;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-card h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+        color: #2c3e50;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dashboard-card h2 i {
+        color: #2ea293;
+    }
+
+    .placement-overview {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .placement-logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #2ea293;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+    }
+
+    .placement-info h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .placement-info p {
+        color: #666;
+    }
+
+    .job-list {
+        list-style: none;
+    }
+
+    .job-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .job-item:last-child {
+        border-bottom: none;
+    }
+
+    .job-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .job-stats {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .job-status {
+        background: #eaf7f5;
+        color: #2ea293;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+    }
+
+    .student-list {
+        list-style: none;
+    }
+
+    .student-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .student-item:last-child {
+        border-bottom: none;
+    }
+
+    .student-name {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .student-position {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .student-status {
+        background: #fff3cd;
+        color: #856404;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+    }
+
+    .btn {
+        background: #2ea293;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #279688;
+    }
+
+    .analytics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .analytics-item {
+        text-align: center;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .analytics-item h3 {
+        font-size: 32px;
+        color: #2ea293;
+        margin-bottom: 5px;
+    }
+
+    .analytics-item p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0 20px;
+            flex-direction: column;
+            height: auto;
+            padding-bottom: 20px;
+        }
+
+        .nav-links {
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dashboard-container {
+            padding: 10px;
+        }
+
+        .welcome-header h1 {
+            font-size: 28px;
+        }
+
+        .welcome-header p {
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .analytics-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="welcome-header">
+            <h1>Welcome to Placement Dashboard</h1>
+            <p>Manage student placements, job postings, and recruitment process.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h2><i class="fas fa-university"></i> Placement Overview</h2>
+                <div class="placement-overview">
+                    <div class="placement-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="placement-info">
+                        <h3>XYZ University Placement Cell</h3>
+                        <p>Placement and Career Services</p>
+                        <p>Location: University Campus</p>
+                        <p>Department: Career Services</p>
+                    </div>
+                </div>
+                <br>
+                <a href="edit-profile.html" class="btn">Edit Profile</a>
+                <a href="post-job.html" class="btn" style="margin-left: 10px;">Post New Job</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-briefcase"></i> Active Job Postings</h2>
+                <ul class="job-list">
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Software Engineer</div>
+                            <div class="job-stats">45 applicants • Posted 2 days ago</div>
+                        </div>
+                        <span class="job-status">Active</span>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">Data Analyst</div>
+                            <div class="job-stats">23 applicants • Posted 5 days ago</div>
+                        </div>
+                        <span class="job-status">Active</span>
+                    </li>
+                    <li class="job-item">
+                        <div>
+                            <div class="job-title">UX Designer</div>
+                            <div class="job-stats">18 applicants • Posted 1 week ago</div>
+                        </div>
+                        <span class="job-status">Active</span>
+                    </li>
+                </ul>
+                <br>
+                <a href="placement-manage-jobs.html" class="btn">Manage Jobs</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-users"></i> Student Applications</h2>
+                <ul class="student-list">
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">John Doe</div>
+                            <div class="student-position">Applied for Software Engineer</div>
+                        </div>
+                        <span class="student-status">Under Review</span>
+                    </li>
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">Jane Smith</div>
+                            <div class="student-position">Applied for Data Analyst</div>
+                        </div>
+                        <span class="student-status">Interview Scheduled</span>
+                    </li>
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">Mike Johnson</div>
+                            <div class="student-position">Applied for UX Designer</div>
+                        </div>
+                        <span class="student-status">Shortlisted</span>
+                    </li>
+                </ul>
+                <br>
+                <a href="company-view-applicants.html" class="btn">View All Applications</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-chart-line"></i> Placement Analytics</h2>
+                <div class="analytics-grid">
+                    <div class="analytics-item">
+                        <h3>156</h3>
+                        <p>Total Applications</p>
+                    </div>
+                    <div class="analytics-item">
+                        <h3>23</h3>
+                        <p>Interviews Conducted</p>
+                    </div>
+                    <div class="analytics-item">
+                        <h3>8</h3>
+                        <p>Offers Made</p>
+                    </div>
+                    <div class="analytics-item">
+                        <h3>5</h3>
+                        <p>Placements This Month</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-calendar-alt"></i> Upcoming Drives</h2>
+                <ul class="student-list">
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">Tech Corp Recruitment Drive</div>
+                            <div class="student-position">Oct 15, 2023 • 10:00 AM</div>
+                        </div>
+                        <a href="index.html" class="btn" style="font-size: 12px; padding: 5px 10px;">View Details</a>
+                    </li>
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">Data Inc Campus Interview</div>
+                            <div class="student-position">Oct 18, 2023 • 2:00 PM</div>
+                        </div>
+                        <a href="index.html" class="btn" style="font-size: 12px; padding: 5px 10px;">View Details</a>
+                    </li>
+                </ul>
+                <br>
+                <a href="index.html" class="btn">View Calendar</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-star"></i> Company Ratings</h2>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 48px; color: #f39c12; margin-bottom: 10px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p style="font-size: 18px; font-weight: bold;">4.7 out of 5</p>
+                    <p style="color: #666;">Average Company Rating</p>
+                </div>
+                <a href="companies.html" class="btn">View All Companies</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-lightbulb"></i> Placement Tips</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                        <h4 style="margin-bottom: 5px;">Prepare Students Well</h4>
+                        <p style="color: #666; font-size: 14px;">Conduct mock interviews and resume workshops to prepare students for placements.</p>
+                    </li>
+                    <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                        <h4 style="margin-bottom: 5px;">Build Strong Industry Ties</h4>
+                        <p style="color: #666; font-size: 14px;">Maintain good relationships with companies for better placement opportunities.</p>
+                    </li>
+                    <li>
+                        <h4 style="margin-bottom: 5px;">Track Progress</h4>
+                        <p style="color: #666; font-size: 14px;">Monitor student progress and provide timely guidance throughout the placement process.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <ul class="student-list">
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">New Application</div>
+                            <div class="student-position">Sarah Wilson applied for Software Engineer</div>
+                        </div>
+                        <span style="color: #666; font-size: 12px;">2 hours ago</span>
+                    </li>
+                    <li class="student-item">
+                        <div>
+                            <div class="student-name">Interview Reminder</div>
+                            <div class="student-position">Interview with Jane Smith tomorrow at 2 PM</div>
+                        </div>
+                        <span style="color: #666; font-size: 12px;">5 hours ago</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

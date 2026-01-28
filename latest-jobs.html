@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Jobs - Job Portal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+    .nav-links li {
+        cursor: pointer;
+        color: #ddd;
+    }
+
+
+
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .job-info span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .job-info i {
+        color: #2ea293;
+        font-size: 14px;
+    }
+
+
+
+    .nav-btns button {
+        background: #2ea293;
+        border: none;
+        padding: 8px 18px;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+
+    .hero {
+        height: 782px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+
+            url("Assets/images/banner.avif");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        color: white;
+        padding-top: 110px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        font-weight: bold;
+    }
+
+    .hero p {
+        margin-top: 15px;
+        color: #ccc;
+        font-size: 16px;
+    }
+
+
+    .search-bar {
+        margin: 50px auto;
+        width: 900px;
+        background: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .search-bar input,
+    .search-bar select {
+        width: 220px;
+        padding: 14px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .search-bar button {
+        margin-left: auto;
+        padding: 20px 24px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        font-size: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .stats {
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-top: 80px;
+    }
+
+    .circle {
+        width: 130px;
+        height: 130px;
+        background: #2ea293;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .circle h2 {
+        font-size: 22px;
+    }
+
+    .circle span {
+        font-size: 14px;
+    }
+
+
+    .brands {
+        height: 80px;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        color: white;
+        font-size: 20px;
+    }
+
+    .logos {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        background-color: black;
+        gap: 156px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+
+    .jobs-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .jobs-row p {
+        margin: 0;
+        font-size: 16px;
+        color: #555;
+        padding-top: 40px;
+        padding-left: 17px;
+    }
+
+    .jobs-row a {

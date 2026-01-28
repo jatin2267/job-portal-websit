@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviews - Job Portal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .reviews-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+
+    .reviews-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .reviews-header h1 {
+        font-size: 42px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .reviews-header p {
+        font-size: 20px;
+        color: #7f8c8d;
+    }
+
+    .overall-rating {
+        text-align: center;
+        margin-bottom: 40px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .overall-rating h2 {
+        font-size: 32px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .stars {
+        font-size: 48px;
+        color: #f39c12;
+        margin-bottom: 10px;
+    }
+
+    .reviews-list {
+        display: grid;
+        gap: 20px;
+    }
+
+    .review-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .reviewer-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #2ea293;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+    }
+
+    .reviewer-details h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .reviewer-details p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .review-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .review-stars {
+        font-size: 20px;
+        color: #f39c12;
+    }
+
+    .review-date {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .review-content {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .review-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .helpful {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .btn {
+        background: #2ea293;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #279688;
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .terms {
+        color: #ccc;
+        margin-top: 50px;
+        display: flex;
+        gap: 19px;
+    }
+
+    .info-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 86px;
+        margin-bottom: 60px;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .job-wrapper {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .job-fav-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 20px;
+    }
+
+    .a {
+        color: white;
+    }
+
+    .col-5 {
+        display: flex;
+    }
+
+    .b {
+        padding-left: 20px;
+        color: white;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 0 20px;
+            flex-direction: column;
+            height: auto;
+            padding-bottom: 20px;
+        }
+
+        .nav-links {
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .reviews-container {
+            padding: 20px 10px;
+        }
+
+        .reviews-header h1 {
+            font-size: 28px;
+        }
+
+        .reviews-header p {
+            font-size: 16px;
+        }
+
+        .review-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .review-footer {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer {
+            padding: 20px;
+        }
+
+        .footer-top {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .col-1, .col-2, .col-3, .col-4 {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h1>All Reviews</h1>
+            <p>Read what our users have to say about their experience</p>
+        </div>
+
+        <div class="overall-rating">
+            <h2>Overall Rating</h2>
+            <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <p style="font-size: 24px; font-weight: bold;">4.7 out of 5</p>
+            <p style="color: #666;">Based on 89 reviews</p>
+        </div>
+
+        <div class="reviews-list">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">JD</div>
+                        <div class="reviewer-details">
+                            <h3>John Doe</h3>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span class="review-date">Oct 15, 2023</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    Excellent platform! I found my dream job within weeks of signing up. The interface is user-friendly and the job recommendations are spot on. Highly recommend to anyone looking for career opportunities.
+                </div>
+                <div class="review-footer">
+                    <span class="helpful">Was this review helpful? <button class="btn" style="font-size: 12px; padding: 4px 8px;">Yes (12)</button></span>
+                    <a href="#" class="btn">Report</a>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">JS</div>
+                        <div class="reviewer-details">
+                            <h3>Jane Smith</h3>
+                            <p>Data Analyst</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <span class="review-date">Oct 10, 2023</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    Great job portal with a wide variety of opportunities. The application process is smooth and I received timely updates. However, I wish there were more filtering options for specific job requirements.
+                </div>
+                <div class="review-footer">
+                    <span class="helpful">Was this review helpful? <button class="btn" style="font-size: 12px; padding: 4px 8px;">Yes (8)</button></span>
+                    <a href="#" class="btn">Report</a>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">MJ</div>
+                        <div class="reviewer-details">
+                            <h3>Mike Johnson</h3>
+                            <p>UX Designer</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="review-date">Oct 5, 2023</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    Impressive platform with excellent user experience. The design is modern and intuitive. I was able to connect with great companies and land interviews quickly. The support team is also very responsive.
+                </div>
+                <div class="review-footer">
+                    <span class="helpful">Was this review helpful? <button class="btn" style="font-size: 12px; padding: 4px 8px;">Yes (15)</button></span>
+                    <a href="#" class="btn">Report</a>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">SW</div>
+                        <div class="reviewer-details">
+                            <h3>Sarah Wilson</h3>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span class="review-date">Sep 28, 2023</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    Outstanding service! The job matching algorithm is top-notch. I received personalized recommendations that perfectly matched my skills and career goals. The platform is reliable and trustworthy.
+                </div>
+                <div class="review-footer">
+                    <span class="helpful">Was this review helpful? <button class="btn" style="font-size: 12px; padding: 4px 8px;">Yes (20)</button></span>
+                    <a href="#" class="btn">Report</a>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">AB</div>
+                        <div class="reviewer-details">
+                            <h3>Alex Brown</h3>
+                            <p>Project Manager</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <span class="review-date">Sep 20, 2023</span>
+                    </div>
+                </div>
+                <div class="review-content">
+                    Good overall experience. The platform has a lot of job listings and the search functionality works well. However, the mobile app could use some improvements for better usability.
+                </div>
+                <div class="review-footer">
+                    <span class="helpful">Was this review helpful? <button class="btn" style="font-size: 12px; padding: 4px 8px;">Yes (6)</button></span>
+                    <a href="#" class="btn">Report</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        "Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily."
+                    </p>
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="#">Subscribe Now</a></button>
+                </div>
+            </div>
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

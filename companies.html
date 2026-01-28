@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Companies - Job Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        height: 70px;
+        background: #0d0d0d;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .brand img {
+        width: 32px;
+        height: auto;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: rgb(160, 161, 161);
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: white;
+    }
+
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    .login-link {
+        color: white;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .register-btn {
+        background: #2ea293;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .register-btn:hover {
+        background: #279688;
+    }
+
+    .heading {
+        background: black;
+        text-align: center;
+        padding: 60px 0;
+    }
+
+    .heading h1 {
+        font-size: 60px;
+        color: white;
+    }
+
+    .companies-section {
+        padding: 70px 80px;
+        text-align: center;
+        background: #eef7f6;
+    }
+
+    .companies-section h2 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto 40px;
+    }
+
+    .company-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .company-card {
+        background: #fff;
+        padding: 30px 25px;
+        border-radius: 14px;
+        text-align: center;
+        width: 306px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .company-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .company-card img {
+        width: 55px;
+        height: 55px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+    }
+
+    .company-card .icon {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    .instagram {
+        background: #000;
+    }
+
+    .tesla {
+        background: #000;
+    }
+
+    .mcd {
+        background: #000;
+    }
+
+    .apple {
+        background: #000;
+    }
+
+    .company-card h3 {
+        margin: 15px 0 10px;
+        font-size: 18px;
+    }
+
+    .company-card p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .jobs {
+        display: inline-block;
+        padding: 6px 14px;
+        font-size: 13px;
+        color: #2aa198;
+        background: #e6f6f4;
+        border-radius: 20px;
+    }
+
+    @media(max-width:900px) {
+        .company-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media(max-width:500px) {
+        .company-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .footer {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 70px 80px;
+        max-width: 1440px;
+        margin: 0 auto;
+        text-align: center;
+        max-height: 466px;
+    }
+
+    .footer ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer li {
+        color: #ccc;
+        font-size: 15px;
+        line-height: 34px;
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    .footer li:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4 {
+        width: 22%;
+        text-align: justify;
+    }
+
+    .col-1 li:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .col-1 img {
+        width: 28px;
+    }
+
+    .col-4 p {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 22px;
+    }
+
+    .col-4 p:first-child {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .col-4 input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 2px solid gray;
+        color: white;
+    }
+
+    .col-4 button {
+        width: 100%;
+        padding: 10px;
+        background: #2ea293;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .col-5 {
+        color: #ccc;
+    }
+
+    .col-5 p {
+        text-align: justify;
+    }
+
+    .footer-contain {
+        background-color: black;
+    }
+
+    .footer ol li a {
+        text-decoration: none;
+        color: #ccc;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .footer ol li a:hover {
+        color: #4da3ff;
+    }
+
+    .link {
+        padding-left: 50%;
+        color: rgb(48, 150, 137);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="brand">
+            <img src="assets/images/check(1) 1.svg" alt="logo-head">
+            <span class="logo">Job Portal</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="companies.html">Companies</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+
+        <div>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+
+    <div class="heading">
+        <h1>All Companies</h1>
+    </div>
+
+    <section class="companies-section">
+        <h2>Explore Companies</h2>
+        <p class="subtitle">
+            Discover top companies hiring across various industries. Find your ideal workplace and explore job opportunities.
+        </p>
+
+        <div class="company-grid">
+            <div class="company-card">
+                <img src="assets/images/Logo.jpg" alt="Royal Stay Hotels">
+                <h3>Royal Stay Hotels</h3>
+                <p>“Leading hospitality company offering luxury stays and exceptional service.”</p>
+                <span class="jobs">5 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo.png" alt="Global News Network">
+                <h3>Global News Network</h3>
+                <p>“Premier media company delivering news and entertainment worldwide.”</p>
+                <span class="jobs">8 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo (1).png" alt="SkyLine Builders">
+                <h3>SkyLine Builders</h3>
+                <p>“Innovative construction firm building the future of infrastructure.”</p>
+                <span class="jobs">12 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo (2).png" alt="FinCorp Solutions">
+                <h3>FinCorp Solutions</h3>
+                <p>“Financial services provider offering comprehensive business solutions.”</p>
+                <span class="jobs">15 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <div class="icon instagram"><i class="fa-brands fa-instagram"></i></div>
+                <h3>Instagram</h3>
+                <p>“Social media platform connecting people through visual storytelling.”</p>
+                <span class="jobs">8 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <div class="icon tesla"><i class="fa-solid fa-t"></i></div>
+                <h3>Tesla</h3>
+                <p>“Electric vehicle and clean energy company revolutionizing transportation.”</p>
+                <span class="jobs">18 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <div class="icon mcd"><i class="fa-solid fa-m"></i></div>
+                <h3>McDonald's</h3>
+                <p>“Global fast-food chain serving quality food and creating jobs worldwide.”</p>
+                <span class="jobs">12 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <div class="icon apple"><i class="fa-brands fa-apple"></i></div>
+                <h3>Apple</h3>
+                <p>“Technology company designing innovative products and services.”</p>
+                <span class="jobs">9 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/LOGO3.png" alt="Tech Corp">
+                <h3>Tech Corp</h3>
+                <p>“Technology solutions company providing cutting-edge software services.”</p>
+                <span class="jobs">20 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo.jpg" alt="Data Inc">
+                <h3>Data Inc</h3>
+                <p>“Data analytics firm helping businesses make informed decisions.”</p>
+                <span class="jobs">7 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo.png" alt="Brand Co">
+                <h3>Brand Co</h3>
+                <p>“Marketing agency specializing in brand development and advertising.”</p>
+                <span class="jobs">10 open jobs</span>
+            </div>
+
+            <div class="company-card">
+                <img src="assets/images/Logo (1).png" alt="Design Studio">
+                <h3>Design Studio</h3>
+                <p>“Creative design studio offering UI/UX and graphic design services.”</p>
+                <span class="jobs">6 open jobs</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-contain">
+        <div class="footer">
+            <div class="footer-top">
+                <div class="col-1">
+                    <ol>
+                        <li>
+                            <a href="index.html">
+                                <span> <img src="Assets/images/Group (1).svg" alt="logo">
+                                    <span>Jobs</span></span>
+                            </a>
+                        </li>
+                        <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                        <li><a href="latest-jobs.html">Latest Jobs</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-2">
+                    <ol>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="partners.html">Partners</a></li>
+                        <li><a href="candidates.html">For Candidates</a></li>
+                        <li><a href="employers.html">For Employers</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-3">
+                    <ol>
+                        <li><a href="#">Job Categories</a></li>
+                        <li><a href="#">Telecommunications</a></li>
+                        <li><a href="#">Hotels & Tourism</a></li>
+                        <li><a href="#">Construction</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Financial Services</a></li>
+                    </ol>
+                </div>
+
+                <div class="col-4">
+                    <p>Newsletter</p>
+                    <p>
+                        “Search and apply for jobs in various <br>
+                        industries across India. Employers can post <br>
+                        jobs and manage applicants easily.”
+                    </p>
+                    <input type="email" placeholder="Email address">
+                    <button><a style="color: white; text-decoration: none;" href="contact-us.html">Subscribe Now</a></button>
+                </div>
+            </div>
+            <div class="col-5" style="margin-top: 80px;">
+                <p>© Copyright Job Portal 2026. Designed by jatin</p>
+                <div class="link">
+                    <span><a style="color: white;" href="#">Privacy Policy</a></span>
+                    <span><a style="margin-left: 20px; color: white;" href="#">Terms & Conditions</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
